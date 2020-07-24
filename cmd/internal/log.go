@@ -8,11 +8,19 @@ import (
 )
 
 func Log(format string, args ...interface{}) {
-	fLog(os.Stdout, format, args)
+	if args != nil {
+		fLog(os.Stdout, format, args)
+	} else {
+		fLog(os.Stdout, format)
+	}
 }
 
 func LogErr(format string, args ...interface{}) {
-	fLog(os.Stderr, "ERROR: "+format, args)
+	if args != nil {
+		fLog(os.Stderr, "ERROR: "+format, args)
+	} else {
+		fLog(os.Stderr, "ERROR: "+format)
+	}
 }
 
 func fLog(out io.Writer, format string, args ...interface{}) {
